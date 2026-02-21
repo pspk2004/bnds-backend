@@ -109,7 +109,7 @@ builder.Services.AddCors(options =>
 //
 // ----- Background Service -----
 //
-builder.Services.AddHostedService<AuctionClosingService>();
+//builder.Services.AddHostedService<AuctionClosingService>();
 
 //
 // ----- Controllers -----
