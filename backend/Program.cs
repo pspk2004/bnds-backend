@@ -191,16 +191,12 @@ using (var scope = app.Services.CreateScope())
 //
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "BidSnap API v1");
-        options.DocumentTitle = "BidSnap API Documentation";
-    });
-}
-
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "BidSnap API v1");
+    options.DocumentTitle = "BidSnap API Documentation";
+});
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
 app.UseAuthentication();
