@@ -163,12 +163,27 @@ var app = builder.Build();
 
 //
 // ----- Seed Data -----
-//
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    context.Database.Migrate();
-    await SeedData.InitializeAsync(context);
+
+    try
+    {
+        context.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Migration failed: " + ex.Message);
+    }
+
+    try
+    {
+        await SeedData.InitializeAsync(context);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Seeding failed: " + ex.Message);
+    }
 }
 
 //
