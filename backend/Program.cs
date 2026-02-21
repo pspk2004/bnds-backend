@@ -20,7 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 //
 builder.WebHost.ConfigureKestrel(options =>
 {
-    var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+    var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
     options.ListenAnyIP(int.Parse(port));
 });
 
